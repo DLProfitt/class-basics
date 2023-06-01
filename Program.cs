@@ -91,8 +91,23 @@ namespace Classes
 
             // Ship the tinker toys to Marcus using UPS
             tinkerToys.Ship(marcus, UPS);
+
             Box secret = new Box();
             Console.WriteLine(secret.GetSecret("please"));
+
+            List<string> inventoryItems = new List<string>();
+            inventoryItems.Add("Apples");
+            inventoryItems.Add("Bananas");
+            inventoryItems.Add("Pears");
+            inventoryItems.Add("Peaches");
+            inventoryItems.Add("Kiwis");
+
+            Store fruitStand = new Store("Fruits Available", inventoryItems);
+            Console.WriteLine($"{fruitStand.Name}: ");
+            foreach (string fruit in fruitStand.Inventory.OrderBy(fruit => fruit))
+            {
+                Console.WriteLine(fruit);
+            }
         }
     }
 
@@ -111,6 +126,18 @@ namespace Classes
                 return "I'm not telling you!";
             }
         }
+    }
+
+    public class Store
+    {
+        public Store(string name, List<string> initialInventory)
+        {
+            Name = name;
+            Inventory = initialInventory;
+        }
+
+        public string Name { get; set; }
+        public List<string> Inventory { get; set; }
     }
 }
 
